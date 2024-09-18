@@ -9,7 +9,7 @@ import io.opentelemetry.sdk.autoconfigure.spi.ConfigProperties;
 
 /**
  * This SPI can be used to define which packages/classes belong to the bootstrap class loader: all
- * packages configured here will always be loaded by the bootstrap class loader, even if class
+ * packages configured here will always be loaded by the bootstrap class loader, even if a class
  * loader that initiated loading of the class does not normally delegate to bootstrap class loader.
  *
  * <p><b>IMPORTANT</b>: This SPI cannot add new packages to the bootstrap CL, it only defines those

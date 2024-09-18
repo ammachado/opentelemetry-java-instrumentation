@@ -28,4 +28,9 @@ public class ApacheCamelInstrumentationModule extends InstrumentationModule {
   public boolean isHelperClass(String className) {
     return className.startsWith("io.opentelemetry.contrib.awsxray.");
   }
+
+  @Override
+  public boolean isIndyModule() {
+    return true;
+  }
 }

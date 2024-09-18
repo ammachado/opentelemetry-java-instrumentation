@@ -6,6 +6,11 @@ plugins {
   id("io.opentelemetry.instrumentation.javaagent-shadowing")
 }
 
+// context "leak" here is intentional: spring-integration instrumentation will always override
+// "local" span context with one extracted from the incoming message when it decides to start a
+// CONSUMER span
+extra["failOnContextLeak"] = false
+
 dependencies {
   /*
     Dependencies added to this configuration will be found by the muzzle gradle plugin during code

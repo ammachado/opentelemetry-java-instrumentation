@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
  * that a new span should be created whenever marked method is executed.
  *
  * <p>If you are a library developer, then probably you should NOT use this annotation, because it
- * is non-functional without some form of auto-instrumentation.
+ * is non-functional without any form of auto-instrumentation.
  */
 @Target({ElementType.METHOD, ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)

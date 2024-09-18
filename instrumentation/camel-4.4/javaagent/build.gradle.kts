@@ -17,6 +17,8 @@ description = "camel-4.4"
 
 dependencies {
 
+  bootstrap(project(":instrumentation:executors:bootstrap"))
+
   library("org.apache.camel:camel-api:$camelversion")
   library("org.apache.camel:camel-support:$camelversion")
   implementation("io.opentelemetry.contrib:opentelemetry-aws-xray-propagator")

@@ -58,7 +58,7 @@ final class CamelPropagationUtil {
 
     @Override
     public String get(Map<String, Object> map, String key) {
-      Object value = map.get(key);
+      Object value = map != null ? map.get(key) : null;
       return (value == null ? null : value.toString());
     }
   }

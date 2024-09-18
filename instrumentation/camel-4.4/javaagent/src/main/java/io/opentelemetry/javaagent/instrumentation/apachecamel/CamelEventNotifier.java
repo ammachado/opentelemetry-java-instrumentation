@@ -52,13 +52,13 @@ final class CamelEventNotifier extends EventNotifierSupport {
       return;
     }
 
-    CamelRequest request = CamelRequest.create(
-        sd,
-        ese.getExchange(),
-        ese.getEndpoint(),
-        CamelDirection.OUTBOUND,
-        sd.getInitiatorSpanKind()
-    );
+    CamelRequest request =
+        CamelRequest.create(
+            sd,
+            ese.getExchange(),
+            ese.getEndpoint(),
+            CamelDirection.OUTBOUND,
+            sd.getInitiatorSpanKind());
 
     Context context = startOnExchangeSending(request);
 
@@ -89,7 +89,8 @@ final class CamelEventNotifier extends EventNotifierSupport {
 
   @Override
   public boolean isEnabled(CamelEvent event) {
-    return event instanceof CamelEvent.ExchangeSendingEvent || event instanceof CamelEvent.ExchangeSentEvent;
+    return event instanceof CamelEvent.ExchangeSendingEvent
+        || event instanceof CamelEvent.ExchangeSentEvent;
   }
 
   @Override

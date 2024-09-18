@@ -36,7 +36,7 @@ final class ExecutorMatchers {
 
   /**
    * Some frameworks have their executors defined as anon classes inside other classes. Referencing
-   * anon classes by name would be fragile, so instead we will use list of class prefix names. Since
+   * anon classes by name would be fragile, so instead we will use the list of class prefix names. Since
    * checking this list is more expensive (O(n)) we should try to keep it short.
    */
   private static final List<String> INSTRUMENTED_EXECUTOR_PREFIXES;
