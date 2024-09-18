@@ -17,19 +17,19 @@ description = "camel-4.4"
 
 dependencies {
 
-  library("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
   library("org.apache.camel:camel-api:$camelversion")
   library("org.apache.camel:camel-support:$camelversion")
   implementation("io.opentelemetry.contrib:opentelemetry-aws-xray-propagator")
 
-  compileOnly("org.glassfish.jaxb:jaxb-runtime:4.0.5")
+  compileOnly("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
 
   compileOnly("com.google.auto.value:auto-value-annotations")
   annotationProcessor("com.google.auto.value:auto-value")
 
+  testInstrumentation(project(":instrumentation:executors:javaagent"))
   testInstrumentation(project(":instrumentation:apache-httpclient:apache-httpclient-5.0:javaagent"))
-  testInstrumentation(project(":instrumentation:servlet:servlet-3.0:javaagent"))
-  testInstrumentation(project(":instrumentation:aws-sdk:aws-sdk-1.11:javaagent"))
+  testInstrumentation(project(":instrumentation:servlet:servlet-5.0:javaagent"))
+  testInstrumentation(project(":instrumentation:aws-sdk:aws-sdk-2.2:javaagent"))
 
   testImplementation("org.apache.camel.springboot:camel-spring-boot-starter:$camelversion")
   testImplementation("org.apache.camel.springboot:camel-jetty-starter:$camelversion")
@@ -55,6 +55,8 @@ dependencies {
     exclude(group = "io.dropwizard.metrics", module = "metrics-core")
   }
 
+  latestDepTestLibrary("org.apache.camel:camel-api:4.+") // documented limitation
+  latestDepTestLibrary("org.apache.camel:camel-support:4.+") // documented limitation
   latestDepTestLibrary("org.apache.camel:camel-core:4.+") // documented limitation
   latestDepTestLibrary("org.apache.camel.springboot:camel-spring-boot-starter:4.+") // documented limitation
   latestDepTestLibrary("org.apache.camel.springboot:camel-jetty-starter:4.+") // documented limitation
@@ -66,11 +68,8 @@ dependencies {
   latestDepTestLibrary("org.apache.camel.springboot:camel-cassandraql-starter:4.+") // documented limitation
 }
 
-
-
 tasks {
   withType<Test>().configureEach {
-
     // TODO run tests both with and without experimental span attributes
     jvmArgs("-Dotel.instrumentation.camel.experimental-span-attributes=true")
     jvmArgs("-Dotel.instrumentation.aws-sdk.experimental-span-attributes=true")

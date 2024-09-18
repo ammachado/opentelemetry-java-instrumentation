@@ -19,6 +19,5 @@
   <logger name="test" level="TRACE"/>
   <logger name="org.testcontainers" level="DEBUG" />
   <logger name="software.amazon.awssdk" level="WARN" />
-  <logger name="org.apache.camel" level="DEBUG" />
 
 </configuration>
